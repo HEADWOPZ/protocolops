@@ -44,7 +44,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             payload.update(json.loads(run_json.read_text(encoding="utf-8")))
         brief = run_dir / "weekly-brief.md"
         payload["has_brief"] = brief.is_file()
-        payload["drafts"] = sorted(p.name for p in (run_dir / "drafts").glob("*.mdx")) if (run_dir / "drafts").is_dir() else []
+        drafts_dir = run_dir / "drafts"
+        payload["drafts"] = sorted(p.name for p in drafts_dir.glob("*.mdx")) if drafts_dir.is_dir() else []
         payload["files"] = sorted(p.name for p in run_dir.iterdir() if p.is_file())
         return JSONResponse(payload)
 

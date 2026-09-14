@@ -62,8 +62,16 @@ def jaccard(a: set[str], b: set[str]) -> float:
     return len(a & b) / len(a | b)
 
 
-def overlap_score(query: str, *fields: str) -> float:
+def brand_tokens(brand: str) -> set[str]:
+    return tokenize(brand) | {"protocol", "docs", "doc"}
+
+
+def overlap_score(query: str, *fields: str, ignore: set[str] | None = None) -> float:
     q = tokenize(query)
+    if ignore:
+        trimmed = q - ignore
+        if trimmed:
+            q = trimmed
     if not q:
         return 0.0
     hay = tokenize(" ".join(fields))

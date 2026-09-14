@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from protocolops.config import Settings
 from protocolops.models import (
@@ -13,7 +13,7 @@ from protocolops.models import (
     QueryRow,
     RankingDrop,
 )
-from protocolops.textutil import overlap_score
+from protocolops.textutil import brand_tokens, overlap_score
 
 DROP_POSITION_DELTA = 3.0
 DROP_MIN_IMPRESSIONS = 40
@@ -36,7 +36,7 @@ def analyze(
     covered: list[str] = []
 
     for row in snapshot.rows:
-        best_title, score = best_doc_match(row.query, index)
+        best_title, score = best_doc_match(row.query, index, brand=settings.brand)
         if score >= GAP_SCORE:
             covered.append(row.query)
         else:
@@ -102,7 +102,7 @@ def analyze(
         totals["ga4_views"] = float(ga4.views)
 
     return Analysis(
-        generated_at=datetime.now(timezone.utc),
+        generated_at=datetime.now(UTC),
         site_url=snapshot.site_url,
         brand=settings.brand,
         totals=totals,
@@ -113,12 +113,21 @@ def analyze(
     )
 
 
-def best_doc_match(query: str, index: DocsIndex) -> tuple[str | None, float]:
+def best_doc_match(query: str, index: DocsIndex, brand: str = "") -> tuple[str | None, float]:
     best_title: str | None = None
     best_score = 0.0
+    ignore = brand_tokens(brand)
     for page in index.pages:
         heading_text = " ".join(h.text for h in page.headings)
-        score = overlap_score(query, page.title, page.slug, page.description, heading_text, " ".join(page.keywords))
+        score = overlap_score(
+            query,
+            page.title,
+            page.slug,
+            page.description,
+            heading_text,
+            " ".join(page.keywords),
+            ignore=ignore,
+        )
         if score > best_score:
             best_score = score
             best_title = page.title

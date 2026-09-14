@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -40,7 +40,7 @@ def crawl_docs(settings: Settings) -> DocsIndex:
     deduped = _dedupe(pages)
     return DocsIndex(
         source=" + ".join(sources),
-        crawled_at=datetime.now(timezone.utc),
+        crawled_at=datetime.now(UTC),
         pages=deduped,
     )
 

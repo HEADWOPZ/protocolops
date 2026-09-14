@@ -1,10 +1,10 @@
-from __future__ import annotations
-
 """MCP server exposing ProtocolOps tools.
 
 Compatible with MCP Python SDK v1 (FastMCP) and v2 (MCPServer). Tool logic
 lives in `protocolops.tools` so tests do not need a live stdio session.
 """
+
+from __future__ import annotations
 
 from typing import Any
 

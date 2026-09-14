@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Optional
 
 import typer
 
@@ -28,7 +27,7 @@ def run_cmd(
     live_telegram: bool = typer.Option(
         False, "--live-telegram", help="Actually POST to Telegram (requires token + chat id)."
     ),
-    output_dir: Optional[Path] = typer.Option(None, "--output-dir", help="Override output directory."),
+    output_dir: Path | None = typer.Option(None, "--output-dir", help="Override output directory."),
 ) -> None:
     """Run ProtocolOps. Use --weekly for the full mock-or-live job."""
     if not weekly:
@@ -84,8 +83,8 @@ def auth_cmd() -> None:
 
 @app.command("desk")
 def desk_cmd(
-    host: Optional[str] = typer.Option(None, "--host"),
-    port: Optional[int] = typer.Option(None, "--port"),
+    host: str | None = typer.Option(None, "--host"),
+    port: int | None = typer.Option(None, "--port"),
 ) -> None:
     """Start the dark status desk (last brief + drafts)."""
     import uvicorn

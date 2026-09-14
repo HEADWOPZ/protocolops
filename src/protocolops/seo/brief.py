@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from protocolops.config import Settings
 from protocolops.models import Analysis, DocsIndex, GA4Snapshot, GSCSnapshot, SitemapReport
@@ -16,7 +16,7 @@ def render_brief(
     draft_slugs: list[str],
     ga4: GA4Snapshot | None = None,
 ) -> str:
-    generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    generated = datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC")
     totals = analysis.totals
     mode = "MOCK (fixtures)" if snapshot.mock else "LIVE Search Console"
     lines = [
@@ -34,8 +34,8 @@ def render_brief(
         "",
         "## Performance",
         "",
-        f"| Clicks | Impressions | Avg position | Avg CTR |",
-        f"| ---: | ---: | ---: | ---: |",
+        "| Clicks | Impressions | Avg position | Avg CTR |",
+        "| ---: | ---: | ---: | ---: |",
         f"| {int(totals.get('clicks', 0))} | {int(totals.get('impressions', 0))} | "
         f"{totals.get('avg_position', 0)} | {totals.get('avg_ctr', 0):.2%} |",
         "",

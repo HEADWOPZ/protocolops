@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import inspect
+
 from protocolops.mcp_server import TOOL_SPECS, create_mcp_server, list_tool_names
 from protocolops.tools import TOOL_NAMES, dispatch
 
@@ -39,6 +41,8 @@ def test_create_mcp_server_exposes_tools():
         if obj is None:
             continue
         if callable(obj):
+            if inspect.iscoroutinefunction(obj):
+                continue
             try:
                 listed = obj()
             except TypeError:

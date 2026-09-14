@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from protocolops.config import Settings, load_settings
@@ -18,7 +18,7 @@ from protocolops.seo.drafts import pick_draft_targets, render_mdx
 
 def run_weekly(settings: Settings | None = None, *, telegram_dry_run: bool = True) -> WeeklyArtifacts:
     settings = settings or load_settings()
-    started = datetime.now(timezone.utc)
+    started = datetime.now(UTC)
     run_id = started.strftime("%Y-%m-%d")
     out = settings.out_dir() / run_id
     drafts_dir = out / "drafts"
@@ -73,7 +73,7 @@ def run_weekly(settings: Settings | None = None, *, telegram_dry_run: bool = Tru
     report_path.write_text(card + "\n", encoding="utf-8")
     telegram = send_telegram(card, settings, dry_run=telegram_dry_run)
 
-    finished = datetime.now(timezone.utc)
+    finished = datetime.now(UTC)
     artifacts = WeeklyArtifacts(
         run_id=run_id,
         started_at=started,
@@ -96,6 +96,8 @@ def run_weekly(settings: Settings | None = None, *, telegram_dry_run: bool = Tru
 
 
 def latest_run_dir(output_dir: Path) -> Path | None:
+    if not output_dir.is_dir():
+        return None
     latest = output_dir / "latest.json"
     if latest.is_file():
         payload = json.loads(latest.read_text(encoding="utf-8"))
