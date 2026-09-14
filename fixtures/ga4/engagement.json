@@ -1,0 +1,12 @@
+{
+  "sessions": 4820,
+  "engaged_sessions": 3011,
+  "views": 12640,
+  "top_pages": [
+    { "path": "/getting-started", "views": 4100 },
+    { "path": "/connect-wallet", "views": 2880 },
+    { "path": "/stake-hls", "views": 2640 },
+    { "path": "/governance", "views": 980 },
+    { "path": "/faq", "views": 720 }
+  ]
+}

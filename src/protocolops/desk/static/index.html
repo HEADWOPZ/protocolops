@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ProtocolOps desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --bg-2: #12161c;
+      --bg-3: #1a2028;
+      --line: #2a3340;
+      --ink: #e8edf2;
+      --muted: #8b97a6;
+      --gold: #e3b341;
+      --gold-dim: #8a6d1f;
+      --teal: #3ecf8e;
+      --red: #ef6b6b;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif; }
+    body { min-height: 100vh; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 28px; border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #10141a, #0b0d10);
+    }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .mark {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: radial-gradient(circle at 30% 30%, #f2d06b, #c4921a);
+      box-shadow: 0 0 0 1px #000, 0 0 24px rgba(227,179,65,.35);
+    }
+    h1 { font-size: 15px; letter-spacing: .14em; text-transform: uppercase; margin: 0; }
+    .sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+    .pills { display: flex; gap: 8px; }
+    .pill {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+      border: 1px solid var(--line); background: var(--bg-2); color: var(--muted);
+      padding: 5px 9px; border-radius: 999px;
+    }
+    .pill.live { color: var(--teal); border-color: #245c43; }
+    .pill.mock { color: var(--gold); border-color: var(--gold-dim); }
+    main { padding: 28px; max-width: 1180px; margin: 0 auto; display: grid; gap: 18px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .metric {
+      background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+      padding: 14px 16px; box-shadow: var(--shadow);
+    }
+    .metric label { display: block; color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .metric b { display: block; margin-top: 8px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 22px; font-weight: 500; }
+    .grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 16px; }
+    section {
+      background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px;
+      padding: 16px 18px 8px; min-height: 220px; box-shadow: var(--shadow);
+    }
+    section h2 {
+      margin: 0 0 12px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold);
+    }
+    #brief {
+      white-space: pre-wrap; font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px; line-height: 1.55; color: #d5dde6; max-height: 520px; overflow: auto;
+      margin: 0; padding-bottom: 16px;
+    }
+    .drafts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .draft {
+      text-align: left; width: 100%; background: var(--bg-3); border: 1px solid var(--line);
+      color: var(--ink); border-radius: 10px; padding: 10px 12px; cursor: pointer;
+      font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px;
+    }
+    .draft:hover, .draft.active { border-color: var(--gold-dim); color: var(--gold); }
+    #draft-view {
+      white-space: pre-wrap; font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px; line-height: 1.5; color: var(--muted); max-height: 360px; overflow: auto;
+    }
+    #empty { color: var(--muted); }
+    footer { padding: 8px 28px 28px; color: var(--muted); font-size: 12px; max-width: 1180px; margin: 0 auto; }
+    @media (max-width: 900px) {
+      .metrics, .grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="mark"></div>
+      <div>
+        <h1>ProtocolOps</h1>
+        <div class="sub" id="brand-line">DeFi docs SEO desk</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill" id="mode-pill">…</span>
+      <span class="pill" id="run-pill">no run</span>
+    </div>
+  </header>
+  <main>
+    <div class="metrics">
+      <div class="metric"><label>Clicks</label><b id="m-clicks">—</b></div>
+      <div class="metric"><label>Impressions</label><b id="m-impr">—</b></div>
+      <div class="metric"><label>Avg position</label><b id="m-pos">—</b></div>
+      <div class="metric"><label>Drafts</label><b id="m-drafts">—</b></div>
+    </div>
+    <div class="grid">
+      <section>
+        <h2>Last weekly brief</h2>
+        <pre id="brief"></pre>
+        <p id="empty" hidden>No weekly run yet. From the repo root: <code>protocolops run --weekly</code></p>
+      </section>
+      <section>
+        <h2>Draft MDX</h2>
+        <div class="drafts" id="draft-list"></div>
+        <pre id="draft-view">Select a draft to preview.</pre>
+      </section>
+    </div>
+  </main>
+  <footer>Human review required. ProtocolOps writes drafts and suggested PR bodies only — it does not buy links, fake traffic, or auto-merge.</footer>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    async function load() {
+      const status = await fetch("/api/status").then((r) => r.json());
+      $("brand-line").textContent = (status.brand || "ProtocolOps") + " · docs SEO desk";
+      const mock = status.mock !== false;
+      $("mode-pill").textContent = mock ? "mock gsc" : "live gsc";
+      $("mode-pill").className = "pill " + (mock ? "mock" : "live");
+      if (!status.ok) {
+        $("empty").hidden = false;
+        $("brief").hidden = true;
+        $("run-pill").textContent = "no run";
+        return;
+      }
+      $("run-pill").textContent = status.run_id || "run";
+      const totals = (status.analysis && status.analysis.totals) || {};
+      $("m-clicks").textContent = fmt(totals.clicks);
+      $("m-impr").textContent = fmt(totals.impressions);
+      $("m-pos").textContent = totals.avg_position != null ? Number(totals.avg_position).toFixed(2) : "—";
+      $("m-drafts").textContent = (status.drafts || []).length;
+      const brief = await fetch("/api/brief").then((r) => r.json()).catch(() => ({ markdown: "" }));
+      $("brief").textContent = brief.markdown || "";
+      const list = $("draft-list");
+      list.innerHTML = "";
+      (status.drafts || []).forEach((name, i) => {
+        const btn = document.createElement("button");
+        btn.className = "draft";
+        btn.textContent = name;
+        btn.onclick = () => showDraft(name, btn);
+        list.appendChild(btn);
+        if (i === 0) showDraft(name, btn);
+      });
+    }
+    async function showDraft(name, btn) {
+      document.querySelectorAll(".draft").forEach((el) => el.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      const slug = name.replace(/\.mdx$/, "");
+      const data = await fetch("/api/drafts/" + encodeURIComponent(slug)).then((r) => r.json());
+      $("draft-view").textContent = data.markdown || data.error || "";
+    }
+    function fmt(n) {
+      if (n == null || n === "") return "—";
+      return Number(n).toLocaleString("en-US", { maximumFractionDigits: 0 });
+    }
+    load().catch((err) => { $("brief").textContent = String(err); });
+  </script>
+</body>
+</html>

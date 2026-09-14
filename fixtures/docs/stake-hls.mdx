@@ -1,0 +1,27 @@
+---
+title: Stake HLS
+description: Deposit HLS and receive hHLS, the Helios liquid staking token.
+slug: stake-hls
+keywords:
+  - helios stake hls
+  - liquid staking
+---
+
+# Stake HLS
+
+Deposit native HLS into the staking vault. You receive hHLS 1:1 at the current exchange rate, which increases as rewards accrue.
+
+## Deposit
+
+1. Connect a wallet.
+2. Approve the vault if you are depositing a wrapped asset.
+3. Call `stake(amount)`.
+4. Wait for the deposit receipt before treating hHLS as spendable.
+
+## Rewards
+
+Rewards are socialized into the hHLS rate. Helios does not pay a advertised APY on this page; read the vault share math on-chain.
+
+## Leaving the vault
+
+Unstake is available from the same UI. Exit timing, queues, and slashing are documented only at a high level here — see engineering before publishing user-facing wait times.

@@ -1,0 +1,28 @@
+---
+title: Connect a wallet
+description: Pair MetaMask, Rabby, or WalletConnect with the Helios adapter.
+slug: connect-wallet
+keywords:
+  - helios connect wallet
+  - metamask
+---
+
+# Connect a wallet
+
+The Helios adapter discovers injected providers first, then falls back to WalletConnect v2.
+
+## Injected providers
+
+Call `adapter.connect({ prefer: "injected" })`. The user must initiate the click. Helios never auto-connects.
+
+## WalletConnect
+
+Pass a Cloud project id and the Helios chain id. Session topics expire after seven days of inactivity.
+
+## Networks
+
+Mainnet chain id `0x484c53` and Sepolia `0x484c54` are the only supported targets in this adapter release.
+
+## Next
+
+If the connect modal closes without an account, ask the user to unlock the extension and retry. A full error-code table is not published yet.

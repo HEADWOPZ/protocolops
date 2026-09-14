@@ -1,0 +1,142 @@
+{
+  "site_url": "https://docs.helios.example/",
+  "start_date": "2026-08-17",
+  "end_date": "2026-09-13",
+  "notes": [
+    "Fixture Search Console rows for Helios Protocol docs. Two-window deltas are inlined so CI needs no Google credentials."
+  ],
+  "rows": [
+    {
+      "query": "helios stake hls",
+      "page": "https://docs.helios.example/stake-hls",
+      "clicks": 96,
+      "impressions": 2100,
+      "ctr": 0.0457,
+      "position": 5.8,
+      "clicks_prev": 164,
+      "impressions_prev": 1980,
+      "ctr_prev": 0.0828,
+      "position_prev": 2.1
+    },
+    {
+      "query": "helios connect metamask",
+      "page": "https://docs.helios.example/connect-wallet",
+      "clicks": 41,
+      "impressions": 980,
+      "ctr": 0.0418,
+      "position": 8.2,
+      "clicks_prev": 88,
+      "impressions_prev": 920,
+      "ctr_prev": 0.0957,
+      "position_prev": 3.0
+    },
+    {
+      "query": "helios getting started",
+      "page": "https://docs.helios.example/getting-started",
+      "clicks": 210,
+      "impressions": 2600,
+      "ctr": 0.0808,
+      "position": 1.8,
+      "clicks_prev": 198,
+      "impressions_prev": 2500,
+      "ctr_prev": 0.0792,
+      "position_prev": 1.9
+    },
+    {
+      "query": "helios governance vote",
+      "page": "https://docs.helios.example/governance",
+      "clicks": 54,
+      "impressions": 740,
+      "ctr": 0.073,
+      "position": 3.4,
+      "clicks_prev": 49,
+      "impressions_prev": 710,
+      "ctr_prev": 0.069,
+      "position_prev": 3.6
+    },
+    {
+      "query": "helios withdrawal queue time",
+      "page": "https://docs.helios.example/",
+      "clicks": 12,
+      "impressions": 1640,
+      "ctr": 0.0073,
+      "position": 18.4,
+      "clicks_prev": 9,
+      "impressions_prev": 990,
+      "ctr_prev": 0.0091,
+      "position_prev": 21.0
+    },
+    {
+      "query": "helios unstake period",
+      "page": "https://docs.helios.example/stake-hls",
+      "clicks": 18,
+      "impressions": 880,
+      "ctr": 0.0205,
+      "position": 12.1,
+      "clicks_prev": 44,
+      "impressions_prev": 860,
+      "ctr_prev": 0.0512,
+      "position_prev": 6.4
+    },
+    {
+      "query": "helios restaking slashing",
+      "page": "https://docs.helios.example/",
+      "clicks": 7,
+      "impressions": 1210,
+      "ctr": 0.0058,
+      "position": 22.6,
+      "clicks_prev": 5,
+      "impressions_prev": 700,
+      "ctr_prev": 0.0071,
+      "position_prev": 24.0
+    },
+    {
+      "query": "helios walletconnect error 4001",
+      "page": "https://docs.helios.example/connect-wallet",
+      "clicks": 9,
+      "impressions": 640,
+      "ctr": 0.0141,
+      "position": 14.2,
+      "clicks_prev": 11,
+      "impressions_prev": 510,
+      "ctr_prev": 0.0216,
+      "position_prev": 11.0
+    },
+    {
+      "query": "helios liquid staking vs lido",
+      "page": "https://docs.helios.example/stake-hls",
+      "clicks": 22,
+      "impressions": 1980,
+      "ctr": 0.0111,
+      "position": 9.7,
+      "clicks_prev": 19,
+      "impressions_prev": 1700,
+      "ctr_prev": 0.0112,
+      "position_prev": 9.1
+    },
+    {
+      "query": "helios connect wallet",
+      "page": "https://docs.helios.example/connect-wallet",
+      "clicks": 130,
+      "impressions": 1540,
+      "ctr": 0.0844,
+      "position": 2.4,
+      "clicks_prev": 122,
+      "impressions_prev": 1490,
+      "ctr_prev": 0.0819,
+      "position_prev": 2.5
+    },
+    {
+      "query": "helios faq",
+      "page": "https://docs.helios.example/faq",
+      "clicks": 40,
+      "impressions": 390,
+      "ctr": 0.1026,
+      "position": 3.1,
+      "clicks_prev": 36,
+      "impressions_prev": 370,
+      "ctr_prev": 0.0973,
+      "position_prev": 3.2
+    }
+  ]
+}

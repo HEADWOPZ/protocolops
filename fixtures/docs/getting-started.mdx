@@ -1,0 +1,34 @@
+---
+title: Getting started
+description: Stand up a Helios wallet session and read your first on-chain balance.
+slug: getting-started
+keywords:
+  - helios getting started
+  - helios docs
+---
+
+# Getting started
+
+Helios Protocol is a liquid-staking layer with a first-party wallet adapter. This page gets a new integrator from zero to a read-only session.
+
+## Prerequisites
+
+- A Chromium wallet that exposes `window.ethereum` or a WalletConnect-compatible signer
+- Sepolia or Helios mainnet RPC
+- The Helios app URL for your environment
+
+## Install
+
+```bash
+npm install @helios/adapter
+```
+
+## First read
+
+Create a client, connect, and request `hls_getStakePosition` only after the user approves the session. Do not prompt on page load.
+
+## Next
+
+- [Connect a wallet](/connect-wallet)
+- [Stake HLS](/stake-hls)
+- [Governance](/governance)
